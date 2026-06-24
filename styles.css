@@ -1,0 +1,186 @@
+/* styles.css - Password Hashing Lab */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav-container h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.nav-menu li a:hover {
+    background: #3498db;
+}
+
+.nav-menu li a.active {
+    background: #3498db;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    border-left: 6px solid #3498db;
+    display: none; /* Hidden by default - controlled by JS */
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+.input-group {
+    margin: 20px 0;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+input[type="password"], input[type="text"] {
+    padding: 14px;
+    font-size: 16px;
+    width: 320px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+button {
+    padding: 14px 28px;
+    font-size: 16px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.result {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: monospace;
+    background: #f8f9fa;
+    border-left: 5px solid #3498db;
+    word-break: break-all;
+    line-height: 1.5;
+}
+
+.success {
+    background: #d5f4e6;
+    border-left-color: #27ae60;
+}
+
+.error {
+    background: #fadbd8;
+    border-left-color: #e74c3c;
+}
+
+.demo-box, .stored-info {
+    background: #ecf0f1;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-size: 15px;
+}
+
+.stored-info {
+    font-family: monospace;
+    background: #34495e;
+    color: #1abc9c;
+}
+
+ul {
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
