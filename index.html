@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Hash Laboratory | Explore Secure Storage</title>
+    <meta name="description" content="An interactive lab to understand password hashing, salting, and secure authentication.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Password Hash Lab</h1>
+            <p>Master the science of secure credential storage through interactive experimentation.</p>
+            
+            <nav class="lab-nav">
+                <a href="#module-hashing" class="nav-link active" data-target="module-hashing">1. Hashing</a>
+                <a href="#module-salting" class="nav-link" data-target="module-salting">2. Salting</a>
+                <a href="#module-login" class="nav-link" data-target="module-login">3. Login</a>
+                <a href="#module-rainbow" class="nav-link" data-target="module-rainbow">4. Rainbow Table</a>
+            </nav>
+        </header>
+
+        <main id="lab-content">
+            <!-- Module 1: The One-Way Function -->
+            <section class="lab-section active" id="module-hashing">
+            <h2><span class="icon">#</span> Module 1: The One-Way Function</h2>
+            <p>A cryptographic hash is a one-way street. You can turn a password into a hash, but you can't turn the hash back into the password.</p>
+            
+            <div class="controls">
+                <div class="input-group">
+                    <label for="plain-input">Enter a Password</label>
+                    <input type="text" id="plain-input" placeholder="Type something..." autocomplete="off">
+                </div>
+                
+                <div class="output-box">
+                    <div id="hash-output" class="hash-display">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</div>
+                </div>
+
+                <div class="explanation">
+                    <strong>Observation:</strong> Notice how even a tiny change in the input (like adding a period) completely changes the <strong>SHA-256</strong> hash. This is called the <em>Avalanche Effect</em>.
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 2: The Salt & Pepper -->
+        <section class="lab-section" id="module-salting">
+            <h2><span class="icon">🧂</span> Module 2: Why We Need Salt</h2>
+            <p>If two users have the same password, they have the same hash. A "Salt" is random data added before hashing to ensure unique results.</p>
+            
+            <div class="controls">
+                <div class="input-group">
+                    <label for="salt-input-pass">Common Password</label>
+                    <input type="text" id="salt-input-pass" value="password123" readonly>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="input-group">
+                        <label>User A (Random Salt)</label>
+                        <input type="text" id="salt-a" value="8f2k-L9s2" readonly>
+                        <div class="hash-display" id="hash-a" style="font-size: 0.7rem; margin-top: 5px;">...</div>
+                    </div>
+                    <div class="input-group">
+                        <label>User B (Random Salt)</label>
+                        <input type="text" id="salt-b" value="3m1x-P0v4" readonly>
+                        <div class="hash-display" id="hash-b" style="font-size: 0.7rem; margin-top: 5px;">...</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" id="regen-salts">Regenerate Salts</button>
+
+                <div class="explanation">
+                    <strong>The Defense:</strong> With salts, even if 1,000 users use the same password, their stored hashes will all be different. This stops <strong>Rainbow Table</strong> attacks.
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 3: Authentication Simulator -->
+        <section class="lab-section" id="module-login">
+            <h2><span class="icon">🔐</span> Module 3: Login Verification</h2>
+            <p>How does a server verify your password if it doesn't store the password? It compares hashes.</p>
+            
+            <div class="login-demo">
+                <div class="controls">
+                    <h3>Simulated Database</h3>
+                    <div class="db-simulation" id="db-view">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <h3>Test Login</h3>
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="login-user" value="admin" readonly style="opacity: 0.7;">
+                    </div>
+                    <div class="input-group">
+                        <label>Try Password</label>
+                        <input type="password" id="login-pass" placeholder="Try 'password123'">
+                    </div>
+                    <button class="btn" id="btn-login">Attempt Login</button>
+                    <div id="login-status" style="text-align: center; margin-top: 10px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Module 4: Rainbow Tables Visualization -->
+        <section class="lab-section" id="module-rainbow">
+            <h2><span class="icon">🌈</span> Module 4: Rainbow Table Attack</h2>
+            <p>Attackers use massive pre-computed tables of hashes to "look up" common passwords instantly. Salts make these tables useless.</p>
+            
+            <div class="controls">
+                <div id="rainbow-table-viz">
+                    <!-- Scrolling hashes simulation -->
+                    [SYSTEM] Loading Rainbow Table (Common Passwords)...
+                </div>
+                <div class="explanation" style="background: rgba(245, 158, 11, 0.1); border-left-color: var(--accent);">
+                    <strong>How it works:</strong> If you don't use a salt, an attacker doesn't need to "crack" your password—they just look up your hash in a list like the one above.
+                </div>
+            </div>
+        </section>
+
+        </main>
+
+        <footer style="text-align: center; color: var(--text-muted); margin-top: 4rem; padding-bottom: 2rem;">
+            <p>&copy; 2026 Password Hash Security Lab. Designed for Educational Purposes.</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
